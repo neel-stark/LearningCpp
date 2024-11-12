@@ -4,6 +4,10 @@
 #include <deque>
 #include <stack>
 #include <queue>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -208,6 +212,75 @@ int main() {
         cout << pqMinHeap.top() << " "; 
         pqMinHeap.pop();
     }
+    cout << endl << endl;
+
+    cout << "----------- Maps -----------" << endl;
+
+    map<string, int> m;
+
+    m["tv"] = 50;
+    m["laptop"] = 100;
+    m["fridge"] = 150;
+
+    m.insert({"watch", 40});
+    m.emplace("headphones", 56);
+    m.emplace("headphones", 78);
+
+    for (pair<string, int> p : m){
+        cout << p.first << " " << p.second << endl;
+    }
+    cout << "Count of headphone keys in the map: " << m.count("headphones") << endl;
+
+    if (m.find("laptop") != m.end()){
+        cout << "laptop key found in map!" << endl;
+    } else {
+        cout << " laptop key not found in map" << endl;
+    }
+    cout << (*(m.find("laptop"))).first << endl;    
+    // cout << (*(m.end())).first << endl;      // trying to dereference m.end() causes segmentation fault
+
+    unordered_map<string, int> uM;
+
+    uM["tv"] = 50;
+    uM["laptop"] = 100;
+    uM["fridge"] = 150;
+
+    cout << "Unordred map" << endl;
+    for (pair<string, int> pUM : uM){
+        cout << pUM.first << " " << pUM.second << endl;
+    }
+    
+    cout << endl << endl;
+
+    cout << "----------- Sets -----------" << endl;
+
+    set<int> set1;
+
+    set1.insert(3);
+    set1.insert(4);
+    set1.insert(5);
+    set1.insert(6);
+
+    for (auto val : set1){
+        cout << val << endl;
+    }
+
+    cout << "The value in set higher than or equal to lower bound = " << *(set1.lower_bound(5)) << endl;
+    // for some reason, the lower_bound(7) which should return an iterator to beyond the set, keeps returning 4 instead of 0
+    
+    cout << "The value in set higher than or equal to lower bound = " << *(set1.upper_bound(5)) << endl;
+
+    unordered_set<int> uSet1;
+
+    uSet1.insert(33);
+    uSet1.insert(4);
+    uSet1.insert(25);
+    uSet1.insert(6);
+
+    for (auto val : uSet1){
+        cout << val << endl;
+    }
+
     cout << endl;
 
     return 0;
